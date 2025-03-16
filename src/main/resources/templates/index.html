@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html xmlns="https://www.thymeleaf.org">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1"
+		<div th:replace="~{fragment :: meta}"></div>               
+		<div th:replace="~{fragment :: styles}"></div>
 		<title>NAGOYAMESHI</title>
 	</head>
 	<body>
-		<p>Hello,world!</p>
+		<div class="samuraitravel-wrapper">
+			<!-- ヘッダー -->
+			<div th:replace="~{fragment :: header}"></div>
+			<main>
+				<div class="container pt-4 pb-5 nagoyameshi-container">
+					<div class="d-flex justify-content-center">
+						<form method="get" th:action="@{/restaurants}" class="mb-5 nagoyameshi-search-form">
+							<div class="input-group">
+								<input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名・エリア">
+								<button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+							</div>
+						</form>
+					</div>
+					<h2 class="text-center mb-3">新着</h2>
+					<div class="row row-cols-lg-5 row-cols-2 g-3 mb-5">
+						<div class="col" th:each="newRestaurant : ${newRestaurants}">
+							<a th:href="@{/restaurants/__${newRestaurant.getId()}__}" class="link-dark nagoyameshi-card-link">
+								<div class="card h-100">
+									<img th:if="${newRestaurant.getImage()}" th:src="@{/storage/__${newRestaurant.getImage()}__}" class="card-img-top nagoyameshi-vertical-card-image" alt="店舗画像">
+									<img th:unless="${newRestaurant.getImage()}" th:src="@{/images/noImage.jpg}" class="card-img-top nagoyameshi-vertical-card-image" alt="NO IMAGE">
+									<div class="card-body">
+										<h3 class="card-title" th:text="${newRestaurant.getName()}"></h3>
+										<p class="card-text mb-1">
+											<small class="text-muted" th:text="${newRestaurant.getAddress()}"></small>
+										</p>
+										<p class="card-text">
+											<span th:text="|${#numbers.formatInteger(newRestaurant.getLowestPrice(), 1, 'COMMA')}～${#numbers.formatInteger(newRestaurant.getHighestPrice(), 1, 'COMMA')}円|"></span>
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</main>
+			
+			<!-- フッター -->
+			<div th:replace="~{fragment :: footer}"></div>
+		</div>
+		
+		<div th:replace="~{fragment :: scripts}"></div>
 	</body>
 </html>

@@ -30,11 +30,11 @@ public class Restaurant {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "lowestPrice")
-	private Integer lowest_price;
+	@Column(name = "lowest_price")
+	private Integer lowestPrice;
 
-	@Column(name = "highestPrice")
-	private Integer highest_price;
+	@Column(name = "highest_price")
+	private Integer highestPrice;
 
 	@Column(name = "postal_code")
 	private String postalCode;
@@ -42,14 +42,14 @@ public class Restaurant {
 	@Column(name = "address")
 	private String address;
 
-	@Column(name = "openingTime")
-	private LocalTime opening_time;
+	@Column(name = "opening_time")
+	private LocalTime openingTime;
 
-	@Column(name = "closingTime")
-	private LocalTime closing_time;
+	@Column(name = "closing_time")
+	private LocalTime closingTime;
 
-	@Column(name = "seatingCapacity")
-	private String seating_capacity;
+	@Column(name = "seating_capacity")
+	private Integer seatingCapacity;
 
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private Timestamp createdAt;
