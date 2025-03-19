@@ -1,4 +1,4 @@
-package com.example.nagoyamashi.service;
+package com.example.nagoyameshi.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.nagoyamashi.entity.Restaurant;
-import com.example.nagoyamashi.form.RestaurantEditForm;
-import com.example.nagoyamashi.form.RestaurantRegisterForm;
-import com.example.nagoyamashi.repository.RestaurantRepository;
+import com.example.nagoyameshi.entity.Restaurant;
+import com.example.nagoyameshi.form.RestaurantEditForm;
+import com.example.nagoyameshi.form.RestaurantRegisterForm;
+import com.example.nagoyameshi.repository.RestaurantRepository;
 
 @Service
 public class RestaurantService {

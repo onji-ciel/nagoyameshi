@@ -1,4 +1,4 @@
-package com.example.nagoyamashi.controller;
+package com.example.nagoyameshi.controller;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.nagoyamashi.entity.Restaurant;
-import com.example.nagoyamashi.repository.RestaurantRepository;
+import com.example.nagoyameshi.entity.Restaurant;
+import com.example.nagoyameshi.repository.RestaurantRepository;
 
 @Controller
 public class HomeController {

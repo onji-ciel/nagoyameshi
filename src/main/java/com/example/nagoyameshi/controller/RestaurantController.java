@@ -1,4 +1,4 @@
-package com.example.nagoyamashi.controller;
+package com.example.nagoyameshi.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.nagoyamashi.entity.Restaurant;
-import com.example.nagoyamashi.repository.RestaurantRepository;
+import com.example.nagoyameshi.entity.Restaurant;
+import com.example.nagoyameshi.repository.RestaurantRepository;
 
 @Controller
 @RequestMapping("/restaurants")

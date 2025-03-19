@@ -1,13 +1,13 @@
-package com.example.nagoyamashi;
+package com.example.nagoyameshi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NagoyamashiApplication {
+public class NagoyameshiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NagoyamashiApplication.class, args);
+		SpringApplication.run(NagoyameshiApplication.class, args);
 	}
 
 }

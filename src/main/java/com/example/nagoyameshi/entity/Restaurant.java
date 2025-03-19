@@ -1,4 +1,4 @@
-package com.example.nagoyamashi.entity;
+package com.example.nagoyameshi.entity;
 
 import java.sql.Timestamp;
 import java.time.LocalTime;

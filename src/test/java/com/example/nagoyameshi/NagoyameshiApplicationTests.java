@@ -1,10 +1,10 @@
-package com.example.nagoyamashi;
+package com.example.nagoyameshi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NagoyamashiApplicationTests {
+class NagoyameshiApplicationTests {
 
 	@Test
 	void contextLoads() {

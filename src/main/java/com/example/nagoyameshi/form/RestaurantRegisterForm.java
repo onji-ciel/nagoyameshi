@@ -1,4 +1,4 @@
-package com.example.nagoyamashi.form;
+package com.example.nagoyameshi.form;
 
 import java.time.LocalTime;
 
