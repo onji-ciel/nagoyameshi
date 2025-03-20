@@ -11,6 +11,9 @@
 			<div th:replace="~{fragment :: header}"></div>
 			<main>
 				<div class="container pt-4 pb-5 nagoyameshi-container">
+					<div th:if="${successMessage}" class="alert alert-info">
+						<span th:text="${successMessage}"></span>
+					</div> 
 					<div class="d-flex justify-content-center">
 						<form method="get" th:action="@{/restaurants}" class="mb-5 nagoyameshi-search-form">
 							<div class="input-group">
