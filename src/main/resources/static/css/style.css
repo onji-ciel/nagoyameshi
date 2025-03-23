@@ -94,6 +94,10 @@ footer {
   opacity: 0.8;   
 }
 
+.nagoyameshi-dropdown-item:active {
+  background-color: #5196a6;
+}
+
 .nagoyameshi-card-link {
   transition: 0.3s;
 }

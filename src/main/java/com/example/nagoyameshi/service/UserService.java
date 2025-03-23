@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.SignupForm;
+import com.example.nagoyameshi.form.UserEditForm;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
 
@@ -56,6 +57,32 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
+	public void update(UserEditForm userEditForm) {
+		User user = userRepository.getReferenceById(userEditForm.getId());
+		
+		user.setName(userEditForm.getName());
+		user.setFurigana(userEditForm.getFurigana());
+		user.setPostalCode(userEditForm.getPostalCode());
+		user.setAddress(userEditForm.getAddress());
+		user.setPhoneNumber(userEditForm.getPhoneNumber());
+		
+		if (!userEditForm.getBirthday().isEmpty()) {
+			user.setBirthday(LocalDate.parse(userEditForm.getBirthday(), DateTimeFormatter.ofPattern("yyyyMMdd")));
+		} else {
+			user.setBirthday(null);
+		}
+		
+		if (!userEditForm.getOccupation().isEmpty()) {
+		    user.setOccupation(userEditForm.getOccupation());
+		} else {
+		    user.setOccupation(null);
+		}
+		
+		user.setEmail(userEditForm.getEmail());
+		
+		userRepository.save(user);
+	}
+	
 	// メールアドレスが登録済みかチェック
 	public boolean isEmailRegistered(String email) {
 		User user = userRepository.findByEmail(email);
@@ -66,4 +93,11 @@ public class UserService {
 	public boolean isSamePassword(String password, String passwordConfirmation) {
 		return password.equals(passwordConfirmation);
 	}
+	
+	// メールアドレスが変更されたかどうかチェック
+	public boolean isEmailChanged(UserEditForm userEditForm) {
+		User currentUser = userRepository.getReferenceById(userEditForm.getId());
+		return !userEditForm.getEmail().equals(currentUser.getEmail());
+	}
+	
 }
