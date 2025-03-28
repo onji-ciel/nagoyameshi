@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -18,15 +19,18 @@ import com.example.nagoyameshi.repository.RestaurantRepository;
 @Service
 public class RestaurantService {
 	private final RestaurantRepository restaurantRepository;
+	private final CategoryRestaurantService categoryRestaurantService;
 	
-	public RestaurantService(RestaurantRepository restaurantRepository) {
+	public RestaurantService(RestaurantRepository restaurantRepository, CategoryRestaurantService categoryRestaurantService) {
 		this.restaurantRepository = restaurantRepository;
+		this.categoryRestaurantService = categoryRestaurantService;
 	}
 	
 	@Transactional
 	public void create(RestaurantRegisterForm restaurantRegisterForm) {
 		Restaurant restaurant = new Restaurant();
 		MultipartFile imageFile = restaurantRegisterForm.getImageFile();
+		List<Integer> categoryIds = restaurantRegisterForm.getCategoryIds();
 		
 		if (!imageFile.isEmpty()) {
 			String imageName = imageFile.getOriginalFilename();
@@ -47,12 +51,17 @@ public class RestaurantService {
 		restaurant.setSeatingCapacity(restaurantRegisterForm.getSeatingCapacity());
 		
 		restaurantRepository.save(restaurant);
+		
+		if (categoryIds != null) {
+			categoryRestaurantService.createCategoriesRestaurants(categoryIds, restaurant);
+		}
 	}
 	
 	@Transactional
 	public void update(RestaurantEditForm restaurantEditForm) {
 		Restaurant restaurant = restaurantRepository.getReferenceById(restaurantEditForm.getId());
 		MultipartFile imageFile = restaurantEditForm.getImageFile();
+		List<Integer> categoryIds = restaurantEditForm.getCategoryIds();
 		
 		if (!imageFile.isEmpty()) {
 			String imageName = imageFile.getOriginalFilename();
@@ -73,6 +82,8 @@ public class RestaurantService {
 		restaurant.setSeatingCapacity(restaurantEditForm.getSeatingCapacity());
 		
 		restaurantRepository.save(restaurant);
+		
+		categoryRestaurantService.syncCategoriesRestaurants(categoryIds, restaurant);
 	}
 
 	public String generateNewFileName(String fileName) {

@@ -1,6 +1,7 @@
 package com.example.nagoyameshi.form;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,9 +11,11 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class RestaurantEditForm {
 	@NotNull
 	private Integer id;
@@ -48,4 +51,5 @@ public class RestaurantEditForm {
 	@Min(value = 0, message = "座席数は0席以上に設定してください。")
 	private Integer seatingCapacity;
 	
+	private List<Integer> categoryIds;
 }
